@@ -2,7 +2,7 @@
 layout: about
 title: about
 permalink: /
-subtitle: PhD student at the UKRI CDT in AI-enabled healthcare
+subtitle: PhD student at the UKRI CDT in AI-enabled healthcare, University College London
 
 profile:
   align: right
@@ -13,7 +13,7 @@ profile:
     <p>London NW1 2DA</p>
 
 news: false # includes a list of news items
-selected_papers: true # includes a list of papers marked as "selected={true}"
+selected_papers: false # includes a list of papers marked as "selected={true}"
 social: true # includes social icons at the bottom of the page
 ---
 

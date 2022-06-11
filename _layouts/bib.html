@@ -69,6 +69,16 @@
             {%- endif -%}
           {%- endfor %}
           </div>
+          
+
+          <!-- Information about talk type and awards, just for Talks-->
+          {%- if entry.talktype -%}
+            <div class="author">{{entry.talktype}}</div>
+          {%- endif -%}
+          {%- if entry.awards -%}
+            <div class="author">{{entry.awards}}</div>
+          {%- endif -%}
+          
 
           <!-- Journal/Book title and date -->
           {% if entry.type == "article" -%}

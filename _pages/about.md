@@ -4,13 +4,13 @@ title: About
 permalink: /
 subtitle: PhD student at the UKRI CDT in AI-enabled Healthcare Systems, University College London
 
-profile:
-  align: right
-  image: prof_pic.jpg
-  address: >
-    <p>Institute of Health Informatics</p>
-    <p>222 Euston Road</p>
-    <p>London NW1 2DA</p>
+#profile:
+#  align: right
+#  image: prof_pic.jpg
+#  address: >
+#    <p>Institute of Health Informatics</p>
+#    <p>222 Euston Road</p>
+#    <p>London NW1 2DA</p>
 
 news: false # includes a list of news items
 selected_papers: false # includes a list of papers marked as "selected={true}"

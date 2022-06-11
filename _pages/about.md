@@ -1,8 +1,8 @@
 ---
 layout: about
-title: about
+title: About
 permalink: /
-subtitle: PhD student at the UKRI CDT in AI-enabled healthcare, University College London
+subtitle: PhD student at the UKRI CDT in AI-enabled Healthcare Systems, University College London
 
 profile:
   align: right
@@ -17,8 +17,16 @@ selected_papers: false # includes a list of papers marked as "selected={true}"
 social: true # includes social icons at the bottom of the page
 ---
 
-Write your biography here. Tell the world about yourself. Link to your favorite [subreddit](http://reddit.com). You can put a picture in, too. The code is already in, just name your picture `prof_pic.jpg` and put it in the `img/` folder.
+## Research
 
-Put your address / P.O. box / other info right below your picture. You can also disable any these elements by editing `profile` property of the YAML header of your `_pages/about.md`. Edit `_bibliography/papers.bib` and Jekyll will render your [publications page](/al-folio/publications/) automatically.
+My PhD research is focused on using machine learning to support the management of blood inventory. I am particularly interested in using real-time data about the state of a hospital to improve institution-level forecasts and using reinforcement learning to recommend replenishment and allocation decisions.
 
-Link to your social media connections, too. This theme is set up to use [Font Awesome icons](http://fortawesome.github.io/Font-Awesome/) and [Academicons](https://jpswalsh.github.io/academicons/), like the ones below. Add your Facebook, Twitter, LinkedIn, Google Scholar, or just disable all of them.
+I am supervised by [Dr Kezhi (Ken) Li](https://iris.ucl.ac.uk/iris/browse/profile?upi=KLIXX57), [Dr Wai Keong Wong](https://www.uclhospitals.brc.nihr.ac.uk/about-us/team/dr-wai-keong-wong), and [Prof Martin Utley](https://iris.ucl.ac.uk/iris/browse/profile?upi=MLUTL84).
+
+My work is generously supported by UKRI training grant [EP/S021612/1](https://gtr.ukri.org/projects?ref=EP%2FS021612%2F1) and the [NIHR UCLH BRC](https://www.uclhospitals.brc.nihr.ac.uk/).
+
+## Background
+
+I completed a BA in Natural Sciences at [Gonville and Caius College](https://www.cai.cam.ac.uk/), University of Cambridge in 2010 and an MSc in Machine Learning at [University College London](https://www.ucl.ac.uk/) in 2019.
+
+Between those degrees, I qualified as a chartered accountant (ACA) and worked in external audit at [Crowe](https://www.crowe.com/uk) and forensic accounting at [Deloitte](https://www2.deloitte.com/uk/en/explore/home.html).

@@ -1,8 +1,8 @@
 ---
 layout: page
 permalink: /talks/
-title: talks
-description: List of talks, including conference presentations
+title: Talks
+description: List of talks, including presentations at non-archival conferences
 nav: true
 nav_order: 2
 ---

@@ -29,4 +29,4 @@ My work is generously supported by UKRI training grant [EP/S021612/1](https://gt
 
 I completed a BA in Natural Sciences at [Gonville and Caius College](https://www.cai.cam.ac.uk/), University of Cambridge in 2010 and an MSc in Machine Learning at [University College London](https://www.ucl.ac.uk/) in 2019.
 
-Between those degrees, I qualified as a chartered accountant (ACA) and worked in external audit at [Crowe](https://www.crowe.com/uk) and forensic accounting at [Deloitte](https://www2.deloitte.com/uk/en/explore/home.html).
+I qualified as a chartered accountant (ACA) in 2014 while working in external audit at [Crowe](https://www.crowe.com/uk), and subsequently spent four years as a forensic accountant at [Deloitte](https://www2.deloitte.com/uk/en/explore/home.html).

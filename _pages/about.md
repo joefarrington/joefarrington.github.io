@@ -25,6 +25,12 @@ I am supervised by [Dr Kezhi (Ken) Li](https://iris.ucl.ac.uk/iris/browse/profil
 
 My work is generously supported by UKRI training grant [EP/S021612/1](https://gtr.ukri.org/projects?ref=EP%2FS021612%2F1) and the [NIHR UCLH BRC](https://www.uclhospitals.brc.nihr.ac.uk/).
 
+## Open source software
+
+### MDPax
+
+[MDPax](https://github.com/joefarrington/mdpax) is a Python package for solving large-scale Markov Decision Process (MDP) problems, leveraging JAX's support for vectorization, parallelization, and just-in-time (JIT) compilation on GPUs. It is designed for researchers and practitioners who want to solve large MDPs but don't want to become experts in GPU programming.
+
 ## Background
 
 I completed a BA in Natural Sciences at [Gonville and Caius College](https://www.cai.cam.ac.uk/), University of Cambridge in 2010 and an MSc in Machine Learning at [University College London](https://www.ucl.ac.uk/) in 2019.

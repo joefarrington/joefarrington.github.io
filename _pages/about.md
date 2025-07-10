@@ -2,11 +2,11 @@
 layout: about
 title: About
 permalink: /
-subtitle: PhD student at the UKRI CDT in AI-enabled Healthcare Systems, University College London
+subtitle: AI for healthcare operations
 
 #profile:
 #  align: right
-#  image: prof_pic.jpg
+#  image: headshot_rec_small.jpg
 #  address: >
 #    <p>Institute of Health Informatics</p>
 #    <p>222 Euston Road</p>
@@ -19,20 +19,18 @@ social: true # includes social icons at the bottom of the page
 
 ## Research
 
-My PhD research is focused on using machine learning to support the management of blood inventory. I am particularly interested in using real-time data about the state of a hospital to improve institution-level forecasts and using reinforcement learning to recommend replenishment and allocation decisions.
+My [PhD research](https://discovery.ucl.ac.uk/id/eprint/10204427/) at University College London focused on using machine learning to support the management of blood inventory. I was supervised by [Dr Kezhi (Ken) Li](https://iris.ucl.ac.uk/iris/browse/profile?upi=KLIXX57), [Dr Wai Keong Wong](https://www.uclhospitals.brc.nihr.ac.uk/about-us/team/dr-wai-keong-wong), and [Prof Martin Utley](https://iris.ucl.ac.uk/iris/browse/profile?upi=MLUTL84).
 
-I am supervised by [Dr Kezhi (Ken) Li](https://iris.ucl.ac.uk/iris/browse/profile?upi=KLIXX57), [Dr Wai Keong Wong](https://www.uclhospitals.brc.nihr.ac.uk/about-us/team/dr-wai-keong-wong), and [Prof Martin Utley](https://iris.ucl.ac.uk/iris/browse/profile?upi=MLUTL84).
-
-My work is generously supported by UKRI training grant [EP/S021612/1](https://gtr.ukri.org/projects?ref=EP%2FS021612%2F1) and the [NIHR UCLH BRC](https://www.uclhospitals.brc.nihr.ac.uk/).
-
-## Open source software
-
-### MDPax
-
-[MDPax](https://github.com/joefarrington/mdpax) is a Python package for solving large-scale Markov Decision Process (MDP) problems, leveraging JAX's support for vectorization, parallelization, and just-in-time (JIT) compilation on GPUs. It is designed for researchers and practitioners who want to solve large MDPs but don't want to become experts in GPU programming.
+My work was generously supported by UKRI training grant [EP/S021612/1](https://gtr.ukri.org/projects?ref=EP%2FS021612%2F1) and the [NIHR UCLH BRC](https://www.uclhospitals.brc.nihr.ac.uk/).
 
 ## Background
 
 I completed a BA in Natural Sciences at [Gonville and Caius College](https://www.cai.cam.ac.uk/), University of Cambridge in 2010 and an MSc in Machine Learning at [University College London](https://www.ucl.ac.uk/) in 2019.
 
 I qualified as a chartered accountant (ACA) in 2014 while working in external audit at [Crowe](https://www.crowe.com/uk), and subsequently spent four years as a forensic accountant at [Deloitte](https://www2.deloitte.com/uk/en/explore/home.html).
+
+## Open source software
+
+#### MDPax
+
+[MDPax](https://github.com/joefarrington/mdpax) is a Python package for solving large-scale Markov Decision Process (MDP) problems, leveraging JAX's support for vectorization, parallelization, and just-in-time (JIT) compilation on GPUs. It is designed for researchers and practitioners who want to solve large MDPs but don't want to become experts in GPU programming.

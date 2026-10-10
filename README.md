@@ -144,20 +144,11 @@ uv run --locked python build.py
 
 GitHub Actions builds without `--include-drafts`, so drafts are never published.
 
-## Edit the homepage, photo, or social links
+## Edit the homepage or social links
 
-Edit `_pages/about.md` for homepage text. To add a portrait, put an image under
-`assets/img/` and update `site.yml`:
+Edit `_pages/about.md` for homepage text.
 
-```yaml
-portrait:
-  path: /assets/img/portrait.jpg
-  alt: Joe Farrington
-```
-
-Leave `path` empty to omit it. The portrait appears in a circle above your name,
-centred on desktop and mobile. The current image is `assets/img/headshot-repaired.jpg`.
-Social links are also in `site.yml`; add your Letterboxd, Mezzanine, or Goodreads
+Social links are in `site.yml`; add your Letterboxd, Mezzanine, or Goodreads
 URL to show that icon. Empty URLs hide the link. SVG sources and licenses are
 in `static/icons/`.
 
@@ -199,7 +190,7 @@ static/                       # CSS, favicon, local profile icons/licenses
 templates/                    # Jinja page and blog templates
 tests/                        # builder tests
 build.py                      # site generator, navigation, output checks
-site.yml                      # identity, profiles, optional portrait
+site.yml                      # identity and profile links
 pyproject.toml, uv.lock        # Python dependencies and lockfile
 ```
 

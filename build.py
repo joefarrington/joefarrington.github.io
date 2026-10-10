@@ -122,7 +122,7 @@ def bibliography(root: Path, name: str) -> list[dict]:
         entries.append({'key': key, 'title': fields['title'], 'year': int(fields['year']),
                         'month': month, 'authors': authors, 'fields': fields,
                         'venue': fields.get('journal', fields.get('booktitle', '')), 'links': links,
-                        'scholar': 'https://scholar.google.com/scholar?' + urlencode({'q': '"' + fields['title'] + '"'})})
+                        'scholar': fields.get('scholar') or 'https://scholar.google.com/scholar?' + urlencode({'q': '"' + fields['title'] + '"'})})
     return entries
 
 

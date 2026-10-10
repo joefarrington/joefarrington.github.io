@@ -45,10 +45,20 @@ class SiteTests(unittest.TestCase):
         entries = build.bibliography(self.root, 'papers')
         for entry in entries:
             query = parse_qs(urlparse(entry['scholar']).query)
-            self.assertEqual(query['q'], ['"' + entry['title'] + '"'])
+            self.assertEqual(entry['scholar'], entry['fields']['scholar'])
+            self.assertEqual(query['user'], ['bhHUyBgAAAAJ'])
+            self.assertEqual(query['view_op'], ['view_citation'])
+            self.assertTrue(query['citation_for_view'][0].startswith('bhHUyBgAAAAJ:'))
         self.assertIn('HTML</a>', papers)
         self.assertIn('PDF</a>', papers)
         build.check_output(output)
+
+    def test_scholar_title_search_fallback(self):
+        (self.root / '_bibliography/papers.bib').write_text(
+            '@article{example, title={A title with spaces & punctuation}, year={2026}}')
+        entry = build.bibliography(self.root, 'papers')[0]
+        query = parse_qs(urlparse(entry['scholar']).query)
+        self.assertEqual(query['q'], ['"' + entry['title'] + '"'])
 
     def test_blog_and_draft_preview(self):
         self.post(extra='description: A summary\n')

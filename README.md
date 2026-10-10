@@ -48,9 +48,11 @@ Add an entry to `_bibliography/papers.bib`, using a unique citation key:
 ```
 
 The page groups entries by year automatically, preserving source order within
-each year. `doi`, `html`, and `pdf` are optional. The citation key becomes
-the entry's anchor; keep existing keys stable. A Google Scholar button searches
-for each paper's quoted title, where visitors can use Cite to export BibTeX.
+each year. `doi`, `html`, `pdf`, and `scholar` are optional. The citation key becomes
+the entry's anchor; keep existing keys stable. Set `scholar = {https://scholar.google.com/citations?...}`
+to link directly to the paper's record (open the paper on your Scholar profile and
+copy its URL). Without this field, the button searches for the quoted paper title.
+Visitors can export BibTeX from Scholar.
 The HTML button uses the DOI URL when available, falling back to `html`.
 The PDF button stays separate. A DOI URL usually redirects to the publisher
 page, whose URL will then appear in the address bar. Abbreviation badges and

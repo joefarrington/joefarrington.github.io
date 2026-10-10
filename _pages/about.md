@@ -11,7 +11,9 @@ I am currently a Data Scientist at [RLDatix](https://www.rldatix.com/en-uki/), u
 
 My [PhD research](https://discovery.ucl.ac.uk/id/eprint/10204427/) at University College London focused on using machine learning to support the management of blood inventory. I was supervised by [Dr Kezhi (Ken) Li](https://iris.ucl.ac.uk/iris/browse/profile?upi=KLIXX57), [Dr Wai Keong Wong](https://www.uclhospitals.brc.nihr.ac.uk/about-us/team/dr-wai-keong-wong), and [Prof Martin Utley](https://iris.ucl.ac.uk/iris/browse/profile?upi=MLUTL84).
 
-My work was generously supported by UKRI training grant [EP/S021612/1](https://gtr.ukri.org/projects?ref=EP%2FS021612%2F1) and the [NIHR UCLH BRC](https://www.uclhospitals.brc.nihr.ac.uk/).
+I was awarded the [Operational Research Society's Doctoral Award](https://www.theorsociety.com/ORS/ORS/Membership/Awards/Awards-and-Prizes/Doctoral-Award.aspx) for the "Most Distinguished Body of Research leading to the Award of a Doctorate in the field of OR" in 2024.
+
+My research was generously supported by UKRI training grant [EP/S021612/1](https://gtr.ukri.org/projects?ref=EP%2FS021612%2F1) and the [NIHR UCLH BRC](https://www.uclhospitals.brc.nihr.ac.uk/).
 
 ## Background
 

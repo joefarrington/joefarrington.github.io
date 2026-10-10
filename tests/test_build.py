@@ -41,7 +41,8 @@ class SiteTests(unittest.TestCase):
         self.assertNotIn('class="badge"', papers + talks)
         self.assertNotIn('>BibTeX</a>', papers + talks)
         self.assertFalse((output / 'assets/bib').exists())
-        self.assertEqual(papers.count('>Google Scholar</a>'), 8)  # page link plus 7 entries
+        self.assertEqual(papers.count('>Google Scholar</a>'), 7)  # one per paper
+        self.assertNotIn('Also on', papers)
         entries = build.bibliography(self.root, 'papers')
         for entry in entries:
             query = parse_qs(urlparse(entry['scholar']).query)

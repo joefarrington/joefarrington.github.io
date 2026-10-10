@@ -9,7 +9,6 @@
 {% if page.subtitle and page.url != '/' %}<p class="subtitle">{{ page.subtitle }}</p>{% endif %}
 <div class="prose">{{ page.body | safe }}</div>
 {% if page.bibliography %}
-{% if page.bibliography == 'papers' %}<p class="scholar-link">Also on <a href="https://scholar.google.com/citations?user=bhHUyBgAAAAJ">Google Scholar</a>.</p>{% endif %}
 <section class="bibliography" aria-label="{{ page.title }}">
 {% for year, entries in bibliography | groupby('year') | reverse %}
 <section class="year-group"><h2>{{ year }}</h2><div class="entries">

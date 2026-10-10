@@ -5,6 +5,8 @@ subtitle: AI for healthcare operations
 description: Research and background of Joe Farrington.
 ---
 
+I am currently a Data Scientist at [RLDatix](https://www.rldatix.com/en-uki/), using machine learning and optimisation to improve healthcare operations.
+
 ## Research
 
 My [PhD research](https://discovery.ucl.ac.uk/id/eprint/10204427/) at University College London focused on using machine learning to support the management of blood inventory. I was supervised by [Dr Kezhi (Ken) Li](https://iris.ucl.ac.uk/iris/browse/profile?upi=KLIXX57), [Dr Wai Keong Wong](https://www.uclhospitals.brc.nihr.ac.uk/about-us/team/dr-wai-keong-wong), and [Prof Martin Utley](https://iris.ucl.ac.uk/iris/browse/profile?upi=MLUTL84).

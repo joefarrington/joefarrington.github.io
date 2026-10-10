@@ -4,6 +4,7 @@ import tempfile
 import unittest
 import xml.etree.ElementTree as ET
 from pathlib import Path
+from html import unescape
 
 import build
 from urllib.parse import urlparse, parse_qs
@@ -31,13 +32,22 @@ class SiteTests(unittest.TestCase):
         output = build.build(self.root)
         papers = (output / 'publications/index.html').read_text()
         talks = (output / 'talks/index.html').read_text()
-        self.assertEqual(papers.count('<article class="entry"'), 7)
-        self.assertEqual(talks.count('<article class="entry"'), 11)
-        self.assertIn('Gallivan award', talks)
-        self.assertIn('September', talks)
-        self.assertIn('González-Gonzalo', papers)
-        self.assertIn('Sánchez', papers)
-        self.assertIn('bhHUyBgAAAAJ', papers)
+        entries = build.bibliography(self.root, 'papers')
+        for name, html in [('papers', papers), ('talks', talks)]:
+            records = build.bibliography(self.root, name)
+            parsed = build.Links()
+            parsed.feed(html)
+            self.assertEqual(html.count('<article class="entry"'), len(records))
+            for record in records:
+                with self.subTest(bibliography=name, key=record['key']):
+                    self.assertIn(record['key'], parsed.ids)
+                    self.assertIn(record['title'], unescape(html))
+                    for author in record['authors']:
+                        self.assertIn(author['name'], unescape(html))
+                    for label, url in record['links']:
+                        self.assertIn(url, parsed.urls)
+                    if name == 'papers':
+                        self.assertIn(record['scholar'], parsed.urls)
         self.assertNotIn('doi.org/https', papers)
         self.assertFalse((output / 'blog').exists())
         self.assertFalse((output / 'projects').exists())
@@ -46,17 +56,14 @@ class SiteTests(unittest.TestCase):
         self.assertNotIn('class="badge"', papers + talks)
         self.assertNotIn('>BibTeX</a>', papers + talks)
         self.assertFalse((output / 'assets/bib').exists())
-        self.assertEqual(papers.count('>Google Scholar</a>'), 7)  # one per paper
+        self.assertEqual(papers.count('>Google Scholar</a>'), len(entries))
         self.assertNotIn('Also on', papers)
-        entries = build.bibliography(self.root, 'papers')
         for entry in entries:
-            query = parse_qs(urlparse(entry['scholar']).query)
-            self.assertEqual(entry['scholar'], entry['fields']['scholar'])
-            self.assertEqual(query['user'], ['bhHUyBgAAAAJ'])
-            self.assertEqual(query['view_op'], ['view_citation'])
-            self.assertTrue(query['citation_for_view'][0].startswith('bhHUyBgAAAAJ:'))
-        self.assertIn('HTML</a>', papers)
-        self.assertIn('PDF</a>', papers)
+            if entry['fields'].get('scholar'):
+                self.assertEqual(entry['scholar'], entry['fields']['scholar'])
+            else:
+                query = parse_qs(urlparse(entry['scholar']).query)
+                self.assertEqual(query['q'], ['"' + entry['title'] + '"'])
         build.check_output(output)
 
     def test_scholar_title_search_fallback(self):

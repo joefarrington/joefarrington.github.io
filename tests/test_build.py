@@ -121,7 +121,20 @@ class SiteTests(unittest.TestCase):
         self.assertEqual(entries[0]['month'], 'July')
         self.assertEqual(entries[0]['venue'], 'A venue')
         self.assertEqual(entries[0]['authors'], [])
-        self.assertIn(('DOI', 'https://doi.org/10.1000/example'), entries[0]['links'])
+        self.assertIn(('HTML', 'https://doi.org/10.1000/example'), entries[0]['links'])
+
+    def test_html_prefers_doi_with_fallback(self):
+        for doi in ['10.1000/example', 'https://doi.org/10.1000/example',
+                    'http://dx.doi.org/10.1000/example', 'doi: 10.1000/example', '']:
+            with self.subTest(doi=doi):
+                (self.root / '_bibliography/papers.bib').write_text(
+                    '@article{paper, title={Example}, year={2026}, '
+                    'html={https://example.org/article}, pdf={https://example.org/paper.pdf}, '
+                    'doi={' + doi + '}}')
+                entries = build.bibliography(self.root, 'papers')
+                expected = 'https://doi.org/10.1000/example' if doi else 'https://example.org/article'
+                self.assertEqual(entries[0]['links'], [
+                    ('HTML', expected), ('PDF', 'https://example.org/paper.pdf')])
 
     def test_template_examples_excluded(self):
         name = '2015-10-20-comments.md'

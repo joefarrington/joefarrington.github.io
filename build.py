@@ -20,7 +20,7 @@ from pybtex.richtext import Text
 ROOT = Path(__file__).resolve().parent
 MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July',
           'August', 'September', 'October', 'November', 'December']
-LINK_FIELDS = {'html': 'HTML', 'pdf': 'PDF', 'doi': 'DOI', 'arxiv': 'arXiv',
+LINK_FIELDS = {'html': 'HTML', 'pdf': 'PDF', 'arxiv': 'arXiv',
                'code': 'Code', 'poster': 'Poster', 'slides': 'Slides',
                'supp': 'Supp', 'website': 'Website', 'blog': 'Blog'}
 
@@ -108,10 +108,11 @@ def bibliography(root: Path, name: str) -> list[dict]:
             authors.append({'name': full_name, 'self': last == 'Farrington' and first in ['Joe', 'Joseph', 'J.'], 'url': url})
         links = []
         for field, label in LINK_FIELDS.items():
-            if not fields.get(field):
+            value = (fields.get('doi') or fields.get('html')) if field == 'html' else fields.get(field)
+            if not value:
                 continue
-            value = fields[field]
-            if field == 'doi':
+            value = value.strip()
+            if field == 'html' and fields.get('doi'):
                 value = 'https://doi.org/' + re.sub(r'^(?:https?://(?:dx\.)?doi\.org/|doi:\s*)', '', value, flags=re.I)
             elif field == 'arxiv':
                 value = value if value.startswith('https://') else 'https://arxiv.org/abs/' + value

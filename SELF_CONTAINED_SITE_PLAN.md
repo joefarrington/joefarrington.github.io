@@ -139,6 +139,8 @@ Preserve the current presentation:
 - Talk type and awards on the talks page.
 - Optional abstract disclosure using native `<details>` when enabled.
 
+Keep one HTML button, using the DOI URL when available and falling back to
+the HTML field. Do not show a separate DOI button; keep PDF separate.
 Accept bare or full-URL DOIs without duplicating the DOI prefix. Local PDF and
 slide paths resolve under the retained assets directory. Outbound links to
 papers and third-party PDFs remain outbound links; they need not be downloaded.

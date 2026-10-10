@@ -51,7 +51,10 @@ The page groups entries by year automatically, preserving source order within
 each year. `doi`, `html`, and `pdf` are optional. The citation key becomes
 the entry's anchor; keep existing keys stable. A Google Scholar button searches
 for each paper's quoted title, where visitors can use Cite to export BibTeX.
-Abbreviation badges and local BibTeX downloads are not displayed.
+The HTML button uses the DOI URL when available, falling back to `html`.
+The PDF button stays separate. A DOI URL usually redirects to the publisher
+page, whose URL will then appear in the address bar. Abbreviation badges and
+local BibTeX downloads are not displayed.
 
 Optional link fields: `code`, `poster`, `slides`, `supp`, `website`, `blog`, `arxiv`.
 For local PDFs, put a file under `assets/pdf/` and use `pdf = {filename.pdf}`.

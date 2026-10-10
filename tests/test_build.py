@@ -31,7 +31,7 @@ class SiteTests(unittest.TestCase):
         output = build.build(self.root)
         papers = (output / 'publications/index.html').read_text()
         talks = (output / 'talks/index.html').read_text()
-        self.assertEqual(papers.count('<article class="entry"'), 7)
+        self.assertEqual(papers.count('<article class="entry"'), 10)
         self.assertEqual(talks.count('<article class="entry"'), 11)
         self.assertIn('Gallivan award', talks)
         self.assertIn('September', talks)
@@ -46,7 +46,7 @@ class SiteTests(unittest.TestCase):
         self.assertNotIn('class="badge"', papers + talks)
         self.assertNotIn('>BibTeX</a>', papers + talks)
         self.assertFalse((output / 'assets/bib').exists())
-        self.assertEqual(papers.count('>Google Scholar</a>'), 7)  # one per paper
+        self.assertEqual(papers.count('>Google Scholar</a>'), 10)  # one per paper
         self.assertNotIn('Also on', papers)
         entries = build.bibliography(self.root, 'papers')
         for entry in entries:

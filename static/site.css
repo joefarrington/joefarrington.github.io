@@ -242,9 +242,6 @@ summary {
   color:var(--accent);
   font-size:.85rem
 }
-.scholar-link {
-  margin-bottom:2rem
-}
 .post-meta {
   color:var(--muted);
   font-size:.85rem

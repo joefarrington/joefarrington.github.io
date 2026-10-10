@@ -182,3 +182,9 @@ pyproject.toml, uv.lock        # Python dependencies and lockfile
 
 Jekyll/Ruby files, example content, unused demo assets, and completed planning/
 preview artifacts have been removed. Earlier versions remain in Git history.
+
+## Acknowledgements
+
+This site originally used [al-folio](https://github.com/alshedivat/al-folio).
+Its layout informed the current Python-based replacement. The original
+[MIT license and copyright notice](LICENSE) are retained.

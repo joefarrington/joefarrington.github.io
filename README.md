@@ -104,9 +104,7 @@ filename when omitted. The Blog link and RSS feed appear when a post is publishe
 Posts are listed newest first. Avoid changing a published slug without arranging
 a redirect. Remote embedded images/scripts are rejected to keep rendering local.
 
-The inherited example posts are explicitly excluded in `site.yml` and remain in
-Git for reference. Do not reuse their filenames for real posts. Old projects,
-news, Liquid templates, and Ruby tooling are also ignored by the Python builder.
+The inherited template examples have been removed; `_posts/` starts empty.
 
 ## Preview drafts
 
@@ -158,9 +156,27 @@ and push/merge to **main**. `.github/workflows/deploy.yml` tests and builds with
 successful checks. Pull
 requests targeting `main` run checks without publishing. Check the repository's
 **Actions** tab if a build fails. GitHub Pages must use **Settings → Pages → Source → GitHub Actions**.
-The old `gh-pages` branch is retained as deployment history; the new workflow
-does not write generated commits to it.
+The default branch is `main` and Pages uses GitHub Actions. Until the replacement
+is reviewed and merged, it lives on `codex/self-contained-site`; local preview
+does not require merging or publishing. The old `gh-pages` branch is retained
+as deployment history.
 
-Until the replacement is reviewed and merged, it lives on
-`codex/self-contained-site`; do not merge merely to preview it. Branch migration
-status is recorded in `MIGRATION.md`.
+## Repository layout
+
+```text
+.github/workflows/deploy.yml   # build/check PRs; deploy main
+_pages/                       # homepage, papers, talks
+_bibliography/                # authoritative papers/talks BibTeX
+_posts/                       # future Markdown blog posts
+assets/img/                   # your photos and post images
+assets/pdf/                   # your PDFs/slides
+static/                       # CSS, favicon, local profile icons/licenses
+templates/                    # active Python/Jinja page and blog templates
+tests/                        # builder tests
+build.py                      # site generator and output checks
+site.yml                      # identity, profiles, optional portrait
+pyproject.toml, uv.lock        # Python dependencies and lockfile
+```
+
+Jekyll/Ruby files, example content, unused demo assets, and completed planning/
+preview artifacts have been removed. Earlier versions remain in Git history.

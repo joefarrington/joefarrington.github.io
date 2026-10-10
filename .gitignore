@@ -3,10 +3,4 @@ _site_build/
 .venv/
 __pycache__/
 *.pyc
-.DS_store
-.bundle/
-.sass-cache/
-.jekyll-cache/
-.jekyll-metadata
-vendor/
-Gemfile.lock
+.DS_Store

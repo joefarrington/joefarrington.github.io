@@ -1,7 +1,7 @@
 <article class="entry" id="{{ entry.key }}">
   <div class="entry-content">
     <h3>{{ entry.title }}</h3>
-    {% if entry.authors %}<p class="authors">{% for author in entry.authors %}{% if not loop.first %}{{ ' and ' if loop.last else ', ' }}{% endif %}{% if author.self %}<strong>{{ author.name }}</strong>{% elif author.url %}<a href="{{ author.url }}">{{ author.name }}</a>{% else %}{{ author.name }}{% endif %}{% endfor %}</p>{% endif %}
+    {% if entry.authors %}<p class="authors">{% for author in entry.authors %}{% if not loop.first %}{{ ' and ' if loop.last else ', ' }}{% endif %}{% if author.self %}<strong>{{ author.name }}</strong>{% else %}{{ author.name }}{% endif %}{% endfor %}</p>{% endif %}
     {% if entry.fields.talktype %}<p>{{ entry.fields.talktype }}</p>{% endif %}
     {% if entry.fields.awards %}<p class="award">{{ entry.fields.awards }}</p>{% endif %}
     <p class="venue"><em>{{ entry.venue }}</em>{% if entry.month %}, {{ entry.month }}{% endif %} {{ entry.year }}</p>

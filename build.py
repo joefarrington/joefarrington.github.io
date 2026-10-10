@@ -64,11 +64,9 @@ def read_markdown(path: Path) -> dict:
     return data
 
 
-def post_pages(root: Path, include_drafts: bool, excluded: list[str] = ()) -> list[dict]:
+def post_pages(root: Path, include_drafts: bool) -> list[dict]:
     posts = []
     for path in sorted((root / '_posts').glob('*.md')):
-        if path.name in excluded:
-            continue
         post = read_markdown(path)
         if post.get('draft') and not include_drafts:
             continue
@@ -87,7 +85,6 @@ def post_pages(root: Path, include_drafts: bool, excluded: list[str] = ()) -> li
 def bibliography(root: Path, name: str) -> list[dict]:
     _, text = front_matter((root / '_bibliography' / f'{name}.bib').read_text(encoding='utf-8'))
     db = parse_string(text, 'bibtex')
-    coauthors = yaml.safe_load((root / '_data/coauthors.yml').read_text()) or {}
     entries = []
     for key, entry in db.entries.items():
         if not re.fullmatch(r'[A-Za-z0-9_-]+', key):
@@ -104,8 +101,7 @@ def bibliography(root: Path, name: str) -> list[dict]:
             full_name = f'{last}, {first}' if first else last
             if person.lineage_names:
                 full_name += ', ' + plain(' '.join(person.lineage_names))
-            url = next((c['url'] for c in coauthors.get(last, []) if first in c['firstname']), '')
-            authors.append({'name': full_name, 'self': last == 'Farrington' and first in ['Joe', 'Joseph', 'J.'], 'url': url})
+            authors.append({'name': full_name, 'self': last == 'Farrington' and first in ['Joe', 'Joseph', 'J.']})
         links = []
         for field, label in LINK_FIELDS.items():
             value = (fields.get('doi') or fields.get('html')) if field == 'html' else fields.get(field)
@@ -178,7 +174,7 @@ def check_output(output: Path):
 def build(root: Path = ROOT, include_drafts: bool = False) -> Path:
     site = yaml.safe_load((root / 'site.yml').read_text())
     site['url'] = site['url'].rstrip('/')
-    posts = post_pages(root, include_drafts, site.get('exclude_posts', []))
+    posts = post_pages(root, include_drafts)
     nav = [('About', '/'), ('Papers', '/publications/'), ('Talks', '/talks/')]
     if posts:
         nav.append(('Blog', '/blog/'))
@@ -250,7 +246,7 @@ def build(root: Path = ROOT, include_drafts: bool = False) -> Path:
         write('/sitemap.xml', ET.tostring(sitemap, encoding='unicode', xml_declaration=True))
         write('/robots.txt', f"User-agent: *\nAllow: /\nSitemap: {site['url']}/sitemap.xml\n")
         write('/.nojekyll', '')
-        # Copy only assets referenced by output, retaining unused template assets in source.
+        # Copy only assets referenced by generated pages.
         for html in staging.rglob('*.html'):
             links = Links()
             links.feed(html.read_text(encoding='utf-8'))

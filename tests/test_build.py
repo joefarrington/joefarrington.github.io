@@ -14,7 +14,7 @@ class SiteTests(unittest.TestCase):
         self.temp = tempfile.TemporaryDirectory()
         self.addCleanup(self.temp.cleanup)
         self.root = Path(self.temp.name)
-        for name in ['_pages', '_bibliography', '_data', 'templates', 'static']:
+        for name in ['_pages', '_bibliography', 'templates', 'static']:
             shutil.copytree(build.ROOT / name, self.root / name)
         (self.root / '_posts').mkdir()
         shutil.copyfile(build.ROOT / 'site.yml', self.root / 'site.yml')
@@ -135,12 +135,6 @@ class SiteTests(unittest.TestCase):
                 expected = 'https://doi.org/10.1000/example' if doi else 'https://example.org/article'
                 self.assertEqual(entries[0]['links'], [
                     ('HTML', expected), ('PDF', 'https://example.org/paper.pdf')])
-
-    def test_template_examples_excluded(self):
-        name = '2015-10-20-comments.md'
-        shutil.copyfile(build.ROOT / '_posts' / name, self.root / '_posts' / name)
-        output = build.build(self.root)
-        self.assertFalse((output / 'blog').exists())
 
     def test_optional_portrait_and_profile_links(self):
         config = build.yaml.safe_load((self.root / 'site.yml').read_text())

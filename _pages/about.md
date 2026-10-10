@@ -1,20 +1,8 @@
 ---
-layout: about
 title: About
 permalink: /
 subtitle: AI for healthcare operations
-
-#profile:
-#  align: right
-#  image: headshot_rec_small.jpg
-#  address: >
-#    <p>Institute of Health Informatics</p>
-#    <p>222 Euston Road</p>
-#    <p>London NW1 2DA</p>
-
-news: false # includes a list of news items
-selected_papers: false # includes a list of papers marked as "selected={true}"
-social: true # includes social icons at the bottom of the page
+description: Research and background of Joe Farrington.
 ---
 
 ## Research

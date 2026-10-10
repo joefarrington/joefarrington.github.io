@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block content %}
+{% if page.url == '/' %}
+<div class="intro{% if site.portrait.path %} with-portrait{% endif %}">
+  <div>
+    <h1>Joe <strong>Farrington</strong></h1><p class="subtitle">{{ page.subtitle }}</p>
+    <nav class="social" aria-label="Profile links">
+    {% for link in socials %}<a href="{{ link.url }}" aria-label="{{ link.label }}" title="{{ link.label }}">{{ link.svg | safe }}</a>{% endfor %}
+    </nav>
+  </div>
+  {% if site.portrait.path %}<img class="portrait" src="{{ site.portrait.path }}" alt="{{ site.portrait.alt }}" width="170" height="170">{% endif %}
+</div>
+{% else %}<h1>{{ page.title }}</h1>{% endif %}
+{% if page.subtitle and page.url != '/' %}<p class="subtitle">{{ page.subtitle }}</p>{% endif %}
+<div class="prose">{{ page.body | safe }}</div>
+{% if page.bibliography %}
+<section class="bibliography" aria-label="{{ page.title }}">
+{% for year, entries in bibliography | groupby('year') | reverse %}
+<section class="year-group"><h2>{{ year }}</h2><div class="entries">
+{% for entry in entries %}{% include 'entry.html' %}{% endfor %}
+</div></section>
+{% endfor %}
+</section>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,17 @@
+name: Joe Farrington
+url: https://joefarrington.github.io
+description: AI for healthcare operations. Research, publications, and talks by Joe Farrington.
+lang: en
+portrait:
+  path: /assets/img/headshot-repaired.jpg
+  alt: Joe Farrington
+social:
+  - {label: Email, icon: envelope, url: "mailto:farrington.joe@gmail.com"}
+  - {label: ORCID, icon: orcid, url: "https://orcid.org/0000-0003-4156-3419"}
+  - {label: Google Scholar, icon: google-scholar, url: "https://scholar.google.com/citations?user=bhHUyBgAAAAJ"}
+  - {label: GitHub, icon: github, url: "https://github.com/joefarrington"}
+  - {label: LinkedIn, icon: linkedin-in, url: "https://www.linkedin.com/in/jmfarrington"}
+  - {label: X (Twitter), icon: x-twitter, url: "https://x.com/joe_farrington"}
+  - {label: Letterboxd, icon: letterboxd, url: ""}
+  - {label: Mezzanine, icon: mezzanine, url: ""}
+  - {label: Goodreads, icon: goodreads, url: ""}

@@ -2,7 +2,12 @@
 {% block content %}
 {% if page.url == '/' %}
 <div class="intro{% if site.portrait.path %} with-portrait{% endif %}">
-  <div><h1>Joe <strong>Farrington</strong></h1><p class="subtitle">{{ page.subtitle }}</p></div>
+  <div>
+    <h1>Joe <strong>Farrington</strong></h1><p class="subtitle">{{ page.subtitle }}</p>
+    <nav class="social" aria-label="Profile links">
+    {% for link in socials %}<a href="{{ link.url }}" aria-label="{{ link.label }}" title="{{ link.label }}">{{ link.svg | safe }}</a>{% endfor %}
+    </nav>
+  </div>
   {% if site.portrait.path %}<img class="portrait" src="{{ site.portrait.path }}" alt="{{ site.portrait.alt }}" width="170" height="170">{% endif %}
 </div>
 {% else %}<h1>{{ page.title }}</h1>{% endif %}
@@ -16,10 +21,5 @@
 </div></section>
 {% endfor %}
 </section>
-{% endif %}
-{% if page.url == '/' %}
-<nav class="social" aria-label="Profile links">
-{% for link in socials %}<a href="{{ link.url }}" aria-label="{{ link.label }}" title="{{ link.label }}">{{ link.svg | safe }}</a>{% endfor %}
-</nav>
 {% endif %}
 {% endblock %}

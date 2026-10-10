@@ -124,6 +124,9 @@ main {
 .prose p {
   max-width:85ch
 }
+.intro + .prose p {
+  max-width:none
+}
 .prose img {
   max-width:100%;
   height:auto
@@ -154,9 +157,15 @@ main {
   color:var(--muted)
 }
 .social {
-  margin:2.6rem 0 2rem;
+  margin:1rem 0 0;
   gap:1rem;
   align-items:center
+}
+.with-portrait .social {
+  justify-content:center
+}
+.with-portrait > div {
+  max-width:100%
 }
 .social a {
   display:inline-flex;

@@ -3,7 +3,7 @@ url: https://joefarrington.github.io
 description: AI for healthcare operations. Research, publications, and talks by Joe Farrington.
 lang: en
 portrait:
-  path: "" # e.g. /assets/img/portrait.jpg
+  path: /assets/img/headshot-repaired.jpg
   alt: Joe Farrington
 social:
   - {label: Email, icon: envelope, url: "mailto:farrington.joe@gmail.com"}

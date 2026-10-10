@@ -3,7 +3,7 @@
 {% if page.url == '/' %}
 <div class="intro{% if site.portrait.path %} with-portrait{% endif %}">
   <div><h1>Joe <strong>Farrington</strong></h1><p class="subtitle">{{ page.subtitle }}</p></div>
-  {% if site.portrait.path %}<img class="portrait" src="{{ site.portrait.path }}" alt="{{ site.portrait.alt }}" width="180" height="180">{% endif %}
+  {% if site.portrait.path %}<img class="portrait" src="{{ site.portrait.path }}" alt="{{ site.portrait.alt }}" width="170" height="170">{% endif %}
 </div>
 {% else %}<h1>{{ page.title }}</h1>{% endif %}
 {% if page.subtitle and page.url != '/' %}<p class="subtitle">{{ page.subtitle }}</p>{% endif %}

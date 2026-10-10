@@ -155,8 +155,11 @@ portrait:
   alt: Joe Farrington
 ```
 
-Leave `path` empty to omit it. The CSS shows a square crop. Social links are also
-in `site.yml`; add your Letterboxd, Mezzanine, or Goodreads URL to show that icon.
+Leave `path` empty to omit it. The portrait appears in a circle above your name,
+centred on desktop and mobile. The current web image is `headshot-repaired.jpg`;
+`headshot_sq.png` is the original, with a shoulder extension applied only to the
+web version. Social links are also in `site.yml`; add your Letterboxd, Mezzanine,
+or Goodreads URL to show that icon.
 Empty URLs hide the link. SVG sources and licenses are in `static/icons/`.
 
 Papers and Talks page titles, descriptions, and optional introductory Markdown

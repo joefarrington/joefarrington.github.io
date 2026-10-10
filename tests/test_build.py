@@ -18,6 +18,11 @@ class SiteTests(unittest.TestCase):
             shutil.copytree(build.ROOT / name, self.root / name)
         (self.root / '_posts').mkdir()
         shutil.copyfile(build.ROOT / 'site.yml', self.root / 'site.yml')
+        portrait = build.yaml.safe_load((self.root / 'site.yml').read_text())['portrait']['path']
+        if portrait:
+            target = self.root / portrait.lstrip('/')
+            target.parent.mkdir(parents=True, exist_ok=True)
+            shutil.copyfile(build.ROOT / portrait.lstrip('/'), target)
 
     def post(self, name='2026-10-10-test.md', extra='', body='Hello **world**.'):
         (self.root / '_posts' / name).write_text(f'---\ntitle: Test post\n{extra}---\n\n{body}', encoding='utf-8')
@@ -103,7 +108,7 @@ class SiteTests(unittest.TestCase):
 
     def test_used_assets_only(self):
         assets = self.root / 'assets'
-        assets.mkdir()
+        assets.mkdir(exist_ok=True)
         (assets / 'notes.txt').write_text('Referenced download')
         (assets / 'unused.txt').write_text('Unused template material')
         self.post(body='[Notes](/assets/notes.txt)')
@@ -153,7 +158,7 @@ class SiteTests(unittest.TestCase):
         next(link for link in config['social'] if link['icon'] == 'mezzanine')['url'] = 'https://example.org/profile'
         (self.root / 'site.yml').write_text(build.yaml.safe_dump(config))
         assets = self.root / 'assets/img'
-        assets.mkdir(parents=True)
+        assets.mkdir(parents=True, exist_ok=True)
         (assets / 'portrait.svg').write_text('<svg xmlns="http://www.w3.org/2000/svg"/>')
         output = build.build(self.root)
         html = (output / 'index.html').read_text()

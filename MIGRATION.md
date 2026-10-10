@@ -32,9 +32,10 @@ Only run the rename in a checkout that still has a local `master` branch.
 
 ## Validation
 
-- Python unit/integration tests cover bibliography preservation and valid downloads,
+- Python unit/integration tests cover bibliography preservation and paper-specific Scholar links,
   drafts/blog/RSS, routing, referenced assets, link failures, portrait/profile
   configuration, workflow guards, and repeatable builds.
-- Local HTTP checks returned 200 for the three main pages, CSS, and a BibTeX download.
+- Local HTTP checks returned 200 for the three main pages and CSS. Local BibTeX downloads were subsequently replaced
+  with per-paper Google Scholar links at the owner’s request.
 - No browser engine is available in the execution runtime, so visual desktop/mobile
   inspection and a native Windows smoke test remain to be performed by the owner.

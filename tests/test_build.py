@@ -6,7 +6,7 @@ import xml.etree.ElementTree as ET
 from pathlib import Path
 
 import build
-from pybtex.database import parse_string
+from urllib.parse import urlparse, parse_qs
 
 
 class SiteTests(unittest.TestCase):
@@ -22,7 +22,7 @@ class SiteTests(unittest.TestCase):
     def post(self, name='2026-10-10-test.md', extra='', body='Hello **world**.'):
         (self.root / '_posts' / name).write_text(f'---\ntitle: Test post\n{extra}---\n\n{body}', encoding='utf-8')
 
-    def test_real_content_and_exports(self):
+    def test_real_content_and_scholar_links(self):
         output = build.build(self.root)
         papers = (output / 'publications/index.html').read_text()
         talks = (output / 'talks/index.html').read_text()
@@ -38,16 +38,16 @@ class SiteTests(unittest.TestCase):
         self.assertFalse((output / 'projects').exists())
         self.assertFalse((output / 'news').exists())
         self.assertNotIn('>Blog</a>', (output / 'index.html').read_text())
-        files = list((output / 'assets/bib').glob('*.bib'))
-        self.assertEqual(len(files), 7)
-        original = parse_string(build.front_matter((self.root / '_bibliography/papers.bib').read_text())[1], 'bibtex')
-        for file in files:
-            exported = parse_string(file.read_text(), 'bibtex')
-            entry = exported.entries[file.stem]
-            self.assertEqual(entry.fields['title'], original.entries[file.stem].fields['title'])
-            self.assertEqual(entry.persons['author'], original.entries[file.stem].persons['author'])
-            self.assertNotIn('abbr', entry.fields)
-            self.assertNotIn('html', entry.fields)
+        self.assertNotIn('class="badge"', papers + talks)
+        self.assertNotIn('>BibTeX</a>', papers + talks)
+        self.assertFalse((output / 'assets/bib').exists())
+        self.assertEqual(papers.count('>Google Scholar</a>'), 8)  # page link plus 7 entries
+        entries = build.bibliography(self.root, 'papers')
+        for entry in entries:
+            query = parse_qs(urlparse(entry['scholar']).query)
+            self.assertEqual(query['q'], ['"' + entry['title'] + '"'])
+        self.assertIn('HTML</a>', papers)
+        self.assertIn('PDF</a>', papers)
         build.check_output(output)
 
     def test_blog_and_draft_preview(self):
@@ -117,7 +117,7 @@ class SiteTests(unittest.TestCase):
 @article{talk, title={Example}, journal=venue, month={{July}}, year={2026},
  talktype={Poster}, awards={An award}, doi={10.1000/example}}
 ''')
-        entries, _ = build.bibliography(self.root, 'talks')
+        entries = build.bibliography(self.root, 'talks')
         self.assertEqual(entries[0]['month'], 'July')
         self.assertEqual(entries[0]['venue'], 'A venue')
         self.assertEqual(entries[0]['authors'], [])

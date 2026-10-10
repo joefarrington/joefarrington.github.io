@@ -43,16 +43,15 @@ Add an entry to `_bibliography/papers.bib`, using a unique citation key:
   year    = {2026},
   doi     = {10.1234/example},
   html    = {https://example.org/article},
-  pdf     = {https://example.org/article.pdf},
-  abbr    = {Journal}
+  pdf     = {https://example.org/article.pdf}
 }
 ```
 
 The page groups entries by year automatically, preserving source order within
-each year. `doi`, `html`, `pdf`, and `abbr` are optional. The citation key becomes
-the entry's anchor and its per-paper BibTeX filename; keep existing keys stable.
-A BibTeX download button is generated for every paper. Display-only fields are
-omitted from exports without changing the source. No combined download is added.
+each year. `doi`, `html`, and `pdf` are optional. The citation key becomes
+the entry's anchor; keep existing keys stable. A Google Scholar button searches
+for each paper's quoted title, where visitors can use Cite to export BibTeX.
+Abbreviation badges and local BibTeX downloads are not displayed.
 
 Optional link fields: `code`, `poster`, `slides`, `supp`, `website`, `blog`, `arxiv`.
 For local PDFs, put a file under `assets/pdf/` and use `pdf = {filename.pdf}`.
@@ -69,7 +68,6 @@ Add an entry to `_bibliography/talks.bib`:
   month    = {July},
   year     = {2026},
   talktype = {Oral},
-  abbr     = {Conference},
   slides   = {https://example.org/slides.pdf}
 }
 ```

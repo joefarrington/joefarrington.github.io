@@ -132,24 +132,21 @@ braces, string definitions, and talks with no author field.
 Preserve the current presentation:
 
 - Year groups in descending order, with stable entry ordering within a year.
-- Title, authors, venue, month/year, and abbreviation badge.
+- Title, authors, venue, and month/year, without abbreviation badges.
 - Emphasis on Joe/Joseph Farrington and existing coauthor links.
 - HTML and PDF links styled as compact buttons; retain support for code,
   poster, slides, supplement, website, and other populated link fields.
 - Talk type and awards on the talks page.
-- Optional abstract and BibTeX disclosure using native `<details>` when enabled.
+- Optional abstract disclosure using native `<details>` when enabled.
 
 Accept bare or full-URL DOIs without duplicating the DOI prefix. Local PDF and
 slide paths resolve under the retained assets directory. Outbound links to
 papers and third-party PDFs remain outbound links; they need not be downloaded.
 Do not rewrite bibliographic content or impose a new citation style.
 
-Add a BibTeX download button for each paper. Do not provide a combined
-bibliography download. Generate standalone, parseable `.bib` files, resolving
-string references and omitting site presentation fields such as `abbr`, `html`,
-and `selected` from citation exports. Retain bibliographic fields and keys,
-including DOI and URL data, and never modify the authoritative source files.
-No JavaScript or copy-to-clipboard feature is needed for downloads.
+Add a Google Scholar button for each paper using a search for its quoted title.
+Visitors can use Scholar’s Cite feature to export BibTeX. Do not generate local
+BibTeX downloads. The authoritative BibTeX sources remain unchanged.
 
 ## Future Markdown blog
 
@@ -236,7 +233,7 @@ copyable instructions matching the finished builder:
    the browser, and show how to stop the server.
 3. **Add a paper:** edit `_bibliography/papers.bib`; provide a minimal example
    with a unique key, title, author, venue, year, and optional DOI/HTML/PDF fields.
-   Explain automatic year grouping and per-paper BibTeX download generation.
+   Explain automatic year grouping and per-paper Google Scholar links.
 4. **Add a talk:** edit `_bibliography/talks.bib`; provide a minimal example
    showing title, venue, month/year, `talktype`, and optional awards/slides/poster
    fields. Explain that author is optional for talks.
@@ -259,9 +256,8 @@ commands as working features. Keep setup tooling limited to `uv` and Git, with P
 
 - `/`, `/publications/`, and `/talks/` render; all 7 papers and 11 talks appear
   with intact keys, text, awards, and HTML/PDF destinations.
-- Each paper BibTeX download parses successfully and preserves its key and
-  bibliographic data. Scholar links match the
-  existing profile.
+- Each paper has a Google Scholar link with its quoted title as the search
+  query. The page-level Scholar link matches the existing profile.
 - Main navigation, social links, coauthor links, anchors, and local downloads
   resolve. No example posts/projects/news appear in the generated site.
 - Homepage works with and without a local portrait, at mobile/desktop widths,

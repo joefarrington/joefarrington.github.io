@@ -1,5 +1,4 @@
 <article class="entry" id="{{ entry.key }}">
-  <div class="badge-wrap">{% if entry.fields.abbr %}<span class="badge">{{ entry.fields.abbr }}</span>{% endif %}</div>
   <div class="entry-content">
     <h3>{{ entry.title }}</h3>
     {% if entry.authors %}<p class="authors">{% for author in entry.authors %}{% if not loop.first %}{{ ' and ' if loop.last else ', ' }}{% endif %}{% if author.self %}<strong>{{ author.name }}</strong>{% elif author.url %}<a href="{{ author.url }}">{{ author.name }}</a>{% else %}{{ author.name }}{% endif %}{% endfor %}</p>{% endif %}
@@ -8,7 +7,7 @@
     <p class="venue"><em>{{ entry.venue }}</em>{% if entry.month %}, {{ entry.month }}{% endif %} {{ entry.year }}</p>
     <div class="paper-links">
     {% for label, href in entry.links %}<a class="button" href="{{ href }}">{{ label }}</a>{% endfor %}
-    {% if page.bibliography == 'papers' %}<a class="button" href="/assets/bib/{{ entry.key }}.bib" download="{{ entry.key }}.bib">BibTeX</a>{% endif %}
+    {% if page.bibliography == 'papers' %}<a class="button" href="{{ entry.scholar }}">Google Scholar</a>{% endif %}
     </div>
     {% if entry.fields.abstract %}<details><summary>Abstract</summary><p>{{ entry.fields.abstract }}</p></details>{% endif %}
   </div>

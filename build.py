@@ -8,14 +8,13 @@ import shutil
 import sys
 import xml.etree.ElementTree as ET
 from pathlib import Path
-from urllib.parse import urlparse, unquote
+from urllib.parse import urlparse, unquote, urlencode
 from html.parser import HTMLParser
 
 import markdown
 import yaml
 from jinja2 import Environment, FileSystemLoader, StrictUndefined
-from pybtex.database import BibliographyData, parse_string
-from pybtex.database.output.bibtex import Writer
+from pybtex.database import parse_string
 from pybtex.richtext import Text
 
 ROOT = Path(__file__).resolve().parent
@@ -24,9 +23,6 @@ MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July',
 LINK_FIELDS = {'html': 'HTML', 'pdf': 'PDF', 'doi': 'DOI', 'arxiv': 'arXiv',
                'code': 'Code', 'poster': 'Poster', 'slides': 'Slides',
                'supp': 'Supp', 'website': 'Website', 'blog': 'Blog'}
-DISPLAY_FIELDS = {'abbr', 'abstract', 'arxiv', 'bibtex_show', 'html', 'pdf',
-                  'selected', 'supp', 'blog', 'code', 'poster', 'slides',
-                  'website', 'talktype', 'awards', 'preview'}
 
 
 def front_matter(text: str) -> tuple[dict, str]:
@@ -88,18 +84,18 @@ def post_pages(root: Path, include_drafts: bool, excluded: list[str] = ()) -> li
     return sorted(posts, key=lambda p: (p['date'], p['url']), reverse=True)
 
 
-def bibliography(root: Path, name: str) -> tuple[list[dict], dict[str, str]]:
+def bibliography(root: Path, name: str) -> list[dict]:
     _, text = front_matter((root / '_bibliography' / f'{name}.bib').read_text(encoding='utf-8'))
     db = parse_string(text, 'bibtex')
     coauthors = yaml.safe_load((root / '_data/coauthors.yml').read_text()) or {}
-    entries, downloads = [], {}
+    entries = []
     for key, entry in db.entries.items():
         if not re.fullmatch(r'[A-Za-z0-9_-]+', key):
             raise ValueError(f'Unsafe bibliography key: {key}')
         fields = {k: plain(v) for k, v in entry.fields.items()}
         if not fields.get('title') or not fields.get('year'):
             raise ValueError(f'{key}: title and year are required')
-        for optional in ('abbr', 'talktype', 'awards', 'abstract'):
+        for optional in ('talktype', 'awards', 'abstract'):
             fields.setdefault(optional, '')
         authors = []
         for person in entry.persons.get('author', []):
@@ -128,13 +124,9 @@ def bibliography(root: Path, name: str) -> tuple[list[dict], dict[str, str]]:
         month = next((m for m in MONTHS if raw_month.lower() in {m.lower(), m[:3].lower()}), raw_month)
         entries.append({'key': key, 'title': fields['title'], 'year': int(fields['year']),
                         'month': month, 'authors': authors, 'fields': fields,
-                        'venue': fields.get('journal', fields.get('booktitle', '')), 'links': links})
-        if name == 'papers':
-            # Resolve @string references using the parser, retain the full author data.
-            from pybtex.database import Entry
-            citation = Entry(entry.type, fields={k: v for k, v in entry.fields.items() if k not in DISPLAY_FIELDS}, persons=entry.persons)
-            downloads[key] = Writer().to_string(BibliographyData(entries={key: citation}))
-    return entries, downloads
+                        'venue': fields.get('journal', fields.get('booktitle', '')), 'links': links,
+                        'scholar': 'https://scholar.google.com/scholar?' + urlencode({'q': '"' + fields['title'] + '"'})})
+    return entries
 
 
 class Links(HTMLParser):
@@ -206,10 +198,7 @@ def build(root: Path = ROOT, include_drafts: bool = False) -> Path:
         for key in ('description', 'subtitle', 'bibliography'):
             page.setdefault(key, '')
         pages.append(page)
-    entries, downloads = {}, {}
-    for name in ('papers', 'talks'):
-        entries[name], files = bibliography(root, name)
-        downloads.update(files)
+    entries = {name: bibliography(root, name) for name in ('papers', 'talks')}
     staging = root / '_site_build'
     output = root / '_site'
     if staging.exists():
@@ -230,8 +219,6 @@ def build(root: Path = ROOT, include_drafts: bool = False) -> Path:
 
     try:
         shutil.copytree(root / 'static', staging / 'static')
-        for key, content in downloads.items():
-            write(f'/assets/bib/{key}.bib', content)
         for page in pages:
             write(page['url'], env.get_template('page.html').render(page=page, bibliography=entries.get(page['bibliography'], [])))
         for post in posts:

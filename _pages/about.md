@@ -5,7 +5,7 @@ subtitle: AI for healthcare operations
 description: Research and background of Joe Farrington.
 ---
 
-I am currently a Data Scientist at [RLDatix](), using machine learning and optimisation to improve healthcare operations.
+I am currently a Data Scientist at [RLDatix](https://www.rldatix.com/en-uki/), using machine learning and optimisation to improve healthcare operations.
 
 ## Research
 

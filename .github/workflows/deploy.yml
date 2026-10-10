@@ -1,50 +1,46 @@
-name: deploy
+name: Build and deploy site
 
 on:
   push:
-    branches:
-      - master
-      - main
+    branches: [main]
   pull_request:
-    branches:
-      - master
-      - main
+    branches: [main]
+
+permissions:
+  contents: read
 
 jobs:
-  deploy:
+  build:
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
+      - uses: actions/checkout@v6
+      - uses: astral-sh/setup-uv@v7
+        with:
+          enable-cache: true
+      - run: uv sync --locked
+      - name: Test
+        run: uv run --locked python -m unittest discover -s tests -v
+      - name: Build and check production output
+        run: uv run --locked python build.py
+      - uses: actions/upload-pages-artifact@v4
+        with:
+          path: _site/
 
-    - name: Setup Ruby
-      uses: ruby/setup-ruby@v1
-      with:
-        ruby-version: '3.2.2'
-
-    - name: Install dependencies
-      run: |
-        gem install bundler
-        bundle config path vendor/bundle
-        bundle install --jobs 4 --retry 3
-        npm install -g mermaid.cli
-
-    - name: Setup deploy options
-      id: setup
-      run: |
-        git config --global user.name "GitHub Action"
-        git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
-        
-        if [[ ${GITHUB_REF} == refs/pull/*/merge ]]; then # pull request
-          echo "SRC_BRANCH=${GITHUB_HEAD_REF}" >> $GITHUB_ENV
-          echo "NO_PUSH=--no-push" >> $GITHUB_ENV
-        elif [[ ${GITHUB_REF} == refs/heads/* ]]; then # branch (e.g., master)
-          echo "SRC_BRANCH=${GITHUB_REF#refs/heads/}" >> $GITHUB_ENV
-        fi
-        echo "DEPLOY_BRANCH=gh-pages" >> $GITHUB_ENV
-
-    - name: Deploy website
-      run: |
-        yes | bash bin/deploy --verbose $NO_PUSH \
-                    --src $SRC_BRANCH \
-                    --deploy $DEPLOY_BRANCH
+  deploy:
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    needs: build
+    runs-on: ubuntu-latest
+    concurrency:
+      group: github-pages
+      cancel-in-progress: false
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/configure-pages@v5
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

@@ -1,0 +1,5 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Blog</h1>
+<ul class="post-list">{% for post in posts %}<li><p class="post-meta">{{ post.date.strftime('%d %B %Y') }}{% if post.draft %} · Draft preview{% endif %}</p><h2><a href="{{ post.url }}">{{ post.title }}</a></h2>{% if post.description %}<p>{{ post.description }}</p>{% endif %}</li>{% endfor %}</ul>
+{% endblock %}

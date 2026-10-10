@@ -1,0 +1,29 @@
+name: Joe Farrington
+url: https://joefarrington.github.io
+description: AI for healthcare operations. Research, publications, and talks by Joe Farrington.
+lang: en
+portrait:
+  path: "" # e.g. /assets/img/portrait.jpg
+  alt: Joe Farrington
+social:
+  - {label: Email, icon: envelope, url: "mailto:farrington.joe@gmail.com"}
+  - {label: ORCID, icon: orcid, url: "https://orcid.org/0000-0003-4156-3419"}
+  - {label: Google Scholar, icon: google-scholar, url: "https://scholar.google.com/citations?user=bhHUyBgAAAAJ"}
+  - {label: ResearchGate, icon: researchgate, url: "https://www.researchgate.net/profile/Joseph-Farrington/"}
+  - {label: GitHub, icon: github, url: "https://github.com/joefarrington"}
+  - {label: LinkedIn, icon: linkedin-in, url: "https://www.linkedin.com/in/jmfarrington"}
+  - {label: X (Twitter), icon: x-twitter, url: "https://x.com/joe_farrington"}
+  - {label: Letterboxd, icon: letterboxd, url: ""}
+  - {label: Mezzanine, icon: mezzanine, url: ""}
+  - {label: Goodreads, icon: goodreads, url: ""}
+
+# Inherited template examples are retained in Git but never published.
+exclude_posts:
+  - 2015-03-15-formatting-and-links.md
+  - 2015-05-15-images.md
+  - 2015-07-15-code.md
+  - 2015-10-20-comments.md
+  - 2015-10-20-math.md
+  - 2018-12-22-distill.md
+  - 2020-09-28-github-metadata.md
+  - 2022-02-01-redirect.md

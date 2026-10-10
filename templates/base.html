@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="{{ site.lang }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ page.title }} · {{ site.name }}</title>
+  <meta name="description" content="{{ page.description or site.description }}">
+  <link rel="canonical" href="{{ site.url }}{{ page.url }}">
+  <meta property="og:title" content="{{ page.title }} · {{ site.name }}">
+  <meta property="og:description" content="{{ page.description or site.description }}">
+  <meta property="og:url" content="{{ site.url }}{{ page.url }}">
+  <meta property="og:type" content="{{ 'article' if page.kind == 'post' else 'website' }}">
+  <meta name="color-scheme" content="light dark">
+  <link rel="icon" href="/static/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/static/site.css">
+  {% if posts %}<link rel="alternate" type="application/rss+xml" title="{{ site.name }}" href="/feed.xml">{% endif %}
+</head>
+<body>
+  <a class="skip" href="#content">Skip to content</a>
+  <header class="site-header"><div class="header-inner">
+    <a class="brand" href="/">Joe <strong>Farrington</strong></a>
+    <nav aria-label="Main navigation">
+      {% for label, url in nav %}<a href="{{ url }}"{% if page.url == url or (url == '/blog/' and page.kind == 'post') %} aria-current="page"{% endif %}>{{ label }}</a>{% endfor %}
+    </nav>
+  </div></header>
+  <main id="content" class="container">
+  {% block content %}{% endblock %}
+  </main>
+  <footer class="site-footer"><div class="container">{{ site.name }} · <a href="https://pages.github.com/">GitHub Pages</a>{% if posts %} · <a href="/feed.xml">RSS</a>{% endif %}</div></footer>
+</body>
+</html>
